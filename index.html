@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Submission Form</title>
+    <script>
+        function validateInputForm(form) {
+            // Regular expressions for validation
+            var dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+            var empIDRegex = /^[A-Z]\d{5}$/;
+            var nameRegex = /^[A-Z][a-z]*$/;
+
+            // Check request date format
+            if (!dateRegex.test(form.ReqDate)) {
+                alert("Invalid request date format. Please use mm/dd/yyyy format.");
+                return false;
+            }
+
+            // Check employee ID format
+            if (!empIDRegex.test(form.EmpID)) {
+                alert("Invalid employee ID format. It must be 6 alphanumeric characters, starting with a capital letter followed by 5 numbers.");
+                return false;
+            }
+
+            // Check first name format
+            if (!nameRegex.test(form.FName)) {
+                alert("Invalid first name format. It must start with a capital letter.");
+                return false;
+            }
+
+            // Check last name format
+            if (!nameRegex.test(form.LName)) {
+                alert("Invalid last name format. It must start with a capital letter.");
+                return false;
+            }
+
+            // Check problem description
+            if (form.ProbDesc.trim() === "") {
+                alert("Problem description cannot be empty.");
+                return false;
+            }
+
+            // If all validations pass, return true
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Ticket Submission Form</h1>
+    <form id="ticketForm" onsubmit="return validateForm(this);">
+        <label for="ReqDate">Request Date:</label>
+        <input type="text" id="ReqDate" name="ReqDate" placeholder="mm/dd/yyyy" required><br>
+
+        <label for="EmpID">Employee ID:</label>
+        <input type="text" id="EmpID" name="EmpID" required><br>
+
+        <label for="FName">First Name:</label>
+        <input type="text" id="FName" name="FName" required><br>
+
+        <label for="LName">Last Name:</label>
+        <input type="text" id="LName" name="LName" required><br>
+
+        <label for="ProbDesc">Problem Description:</label><br>
+        <textarea id="ProbDesc" name="ProbDesc" rows="4" cols="50" required></textarea><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
